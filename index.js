@@ -8,7 +8,7 @@ const ObjectId = require("mongodb").ObjectId;
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.in3ti.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const port = process.env.PORT || 8080;
+
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -48,5 +48,5 @@ client.connect(err => {
 
 
 
-
-app.listen(port, console.log(`Run time port is ${port}`))
+// const port = process.env.PORT || 8080;
+app.listen(process.env.PORT || 8080)
