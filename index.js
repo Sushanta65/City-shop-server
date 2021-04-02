@@ -18,6 +18,7 @@ app.use(bodyParser.json())
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
   const productsCollection = client.db("CityShops").collection("products");
+  const ordersCollection = client.db("CityShops").collection("orders"); 
         
     app.get('/products', (req, res) => {
       productsCollection.find({})
@@ -33,15 +34,28 @@ client.connect(err => {
       })
       
     })
-
+    /////// Add Products
     app.post('/addProduct', (req, res) => {
       const newProduct = req.body;
       productsCollection.insertOne(newProduct)
       .then(result => {
-        console.log("result", result.insertedCount)
         res.send(result.insertedCount > 0)
       })
-      console.log(newProduct)
+    })
+    ////// Add Orders
+    app.post('/addOrder', (req, res) => {
+      const order = req.body;
+      ordersCollection.insertOne(order)
+      .then(result => {
+        res.send(result.insertedCount > 0)
+      })
+    })
+
+    app.get('/orders', (req, res) => {
+      ordersCollection.find({})
+      .toArray((err, documents) => {
+        res.send(documents)
+      })
     })
 
     app.get('/', (req, res) => {
