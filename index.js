@@ -9,11 +9,8 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster
 const cors = require('cors')
 const bodyParser = require('body-parser')
 
-
 app.use(cors())
 app.use(bodyParser.json())
-
-
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
@@ -73,6 +70,4 @@ client.connect(err => {
 
 });
 
-
-// const port = process.env.PORT || 8080;
 app.listen(process.env.PORT || 8080)
