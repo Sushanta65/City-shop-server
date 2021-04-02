@@ -1,2 +1,3 @@
-# full-stack-server-Sushanta65
-full-stack-server-Sushanta65 created by GitHub Classroom
+# An E-commerce site's server.
+This is a server repository for an e-commerce site name "City Shop".
+Visit Site: 
