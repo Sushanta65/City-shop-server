@@ -52,7 +52,7 @@ client.connect(err => {
     })
 
     app.get('/orders', (req, res) => {
-      ordersCollection.find({})
+      ordersCollection.find({email: req.query.email})
       .toArray((err, documents) => {
         res.send(documents)
       })
@@ -61,8 +61,17 @@ client.connect(err => {
     app.get('/', (req, res) => {
       res.send("Your Deployed Code is Working!")
     })
-});
 
+    // Delete Product
+     app.delete('/delete/:id', (req, res) => {
+       const id = ObjectId(req.params.id)
+       productsCollection.findOneAndDelete({_id: id})
+       .then((err, documents) => {
+         res.send(documents)
+       })
+    })
+
+});
 
 
 // const port = process.env.PORT || 8080;
