@@ -44,6 +44,9 @@ client.connect(err => {
       console.log(newProduct)
     })
 
+    app.get('/', (req, res) => {
+      res.send("Your Deployed Code is Working!")
+    })
 });
 
 
